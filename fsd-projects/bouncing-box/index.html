@@ -8,7 +8,7 @@
       .box {
         width: 70px;
         height: 70px;
-        background-color: teal;
+        background-color: rgb(229, 255, 0);
         font-size: 300%;
         text-align: center;
         user-select: none;
@@ -18,7 +18,9 @@
         /* Change me! */
         left: 0px;
       }
-
+      body {
+        background-image: url("https://i.etsystatic.com/15311900/r/il/71e9e0/4438722570/il_fullxfull.4438722570_9w72.jpg")
+      }
       .board {
         height: 100vh;
       }
@@ -27,9 +29,10 @@
   </head>
 
   <body class="board">
+    
     <!-- HTML for the box -->
     <div class="box">?</div>
-
+     
     <script>
       (function () {
         "use strict";
@@ -69,22 +72,30 @@
         //////////////////////////////////////////////////////////////////
 
         // TODO 2 - Variable declarations
-
-
-
-
-
+         var positionX = 0;
+         var points = 0;
+         var speed = 10;
+         var positionY = 0;
+         var speedY = 10;
+    
         /**
          * This Function will be called 20 times/second.
          * Each time it is called, it should move the Box to a new location.
          * If the box drifts off the screen, turn it around!
          */
-        function update() {
-
+         function update () {
+         moveBoxTo(positionX); // Moves box to right edge
+         positionX += speed
+         if (positionX > boardWidth) {
+          speed *= -1;
+         }
+         if (positionX < 0) {
+          speed *= -1;
+         }
+         }
+         
         
 
-          
-        }
 
         /**
          * This Function will be called each time the box is clicked.
@@ -94,10 +105,10 @@
          * - move the box to the left side of the screen.
          */
         function handleBoxClick() {
-
-
-
-
+       positionX = 0
+      changeBoxText(points)
+      points++; // Increases points by 1
+      speed = 3 * points + 10;
         }
 
 
